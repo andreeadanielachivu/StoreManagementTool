@@ -1,7 +1,10 @@
+version: '3.8'
 services:
   mysql:
     platform: linux/x86_64
-    image: mysql:8.0.26
+    build:
+      context: .
+      dockerfile: Dockerfile-database
     environment:
       MYSQL_USER: user
       MYSQL_PASSWORD: test123!
@@ -9,7 +12,6 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./init:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
 volumes:
   db-data:

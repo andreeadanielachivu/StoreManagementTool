@@ -1,0 +1,8 @@
+# Dockerfile
+FROM mysql:8.0.26
+
+# Copy init scripts to the container
+COPY ./init /docker-entrypoint-initdb.d
+
+# Set the correct permissions for the init scripts
+RUN chmod 644 /docker-entrypoint-initdb.d/*.sql
